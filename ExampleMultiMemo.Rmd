@@ -1,0 +1,73 @@
+---
+output: 
+  word_document:
+    reference_docx: ArmyMemoTemplate_Sample.docx
+---
+
+```{r setup, include=FALSE}
+# This was built with help from:
+# MAJ John Case, he's awesome.
+# https://rmarkdown.rstudio.com/articles_docx.html 
+# https://www.markdownguide.org/basic-syntax/
+# https://rapporter.github.io/pander/
+# https://www.rdocumentation.org/packages/pander/versions/0.6.3
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      fig.align = 'center', fig.height = 3.5, fig.width = 6)
+```
+
+\newline <!--Don't delete this--> 
+<!--This is a really annoying and hacky way to get the office symbol and date aligned well--> 
+<!--Just change your office symbol and date to the appropriate ones see below--> 
+<!--Don't change the pipes, this is building a table-->
+
+||| 
+|:---|---:| 
+|MyOfficeSymbol | &nbsp; `r format(Sys.Date(), '%d %b %y')`|
+|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |
+
+\newline
+
+MEMORANDUM FOR `r stateData$State`
+
+\newline
+
+SUBJECT: State Murders Compared to National Numbers
+
+\newline
+
+\newline
+
+# This is a report that shows how `r stateData$State` compares to the rest of the nation in murders for 1973.
+
+# **Murders.**  `r stateData$State` had `r as.character(stateData$Murder)` murder(s) in 1973.  One can see how this compares to the nation in Figure 1 below.
+
+```{r murderDistro, echo = FALSE, fig.cap='Relative Murders for 1973', fig.width=6.5}
+p + ggplot2::geom_vline(xintercept = stateData$Murder)
+```
+
+`r ifelse(stateData$Murder > nationalMean, 'Clearly we have work to do boss.', 'We are doing well.')`
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+# The point of contact for this is the undersigned at 867-5309.
+
+\newline
+
+\newline
+
+||||
+|:---|:---|
+|1 Encls | FIRST MI LAST|
+|1. Enclosure 1 | RANK, BRANCH |
+| | Job |
+| ||
+|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
